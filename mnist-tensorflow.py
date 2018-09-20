@@ -6,7 +6,7 @@ from __future__ import print_function
 import numpy as np
 import tensorflow as tf
 
-tf.logging.set_verbosity(tf.logging.INFO)
+#tf.logging.set_verbosity(tf.logging.INFO)
 tf.logging.set_verbosity(tf.logging.ERROR)
 
 # Our application logic will be added here
