@@ -45,7 +45,7 @@ class MyNet(nn.Module):
                                out_features=2)
 
     def forward(self, x, nhid=NUMHIDDEN, batchs=BATCHSIZE):
-        x = self.embedding(x)
+        x = self.embedding(x.long())
         h0 = Variable(torch.zeros(1, batchs, nhid)).cuda()
         x, h = self.gru(x, h0)  # outputs, states
         # just get the last output state
@@ -78,8 +78,8 @@ if __name__ == '__main__':
     for j in range(EPOCHS):
         for data, target in yield_mb(x_train, y_train, BATCHSIZE, shuffle=True):
             # Get samples
-            data = torch.tensor(data, requires_grad = True, dtype=torch.long).cuda() #Variable(torch.LongTensor(data).cuda())
-            target = torch.tensor(target, requires_grad = True, dtype=torch.long).cuda()
+            data = torch.tensor(data, requires_grad = True, dtype=torch.float).cuda() #Variable(torch.LongTensor(data).cuda())
+            target = torch.tensor(target, dtype=torch.long).cuda()
             # Init
             optimizer.zero_grad()
             # Forwards
